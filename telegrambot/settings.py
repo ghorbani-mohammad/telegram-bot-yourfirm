@@ -10,7 +10,11 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
+import environ
 from pathlib import Path
+
+# Reading environment variables
+env = environ.Env()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -125,5 +129,5 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-TELEGRAM_AUTH_TOKEN = ''
+TELEGRAM_AUTH_TOKEN = env("TELEGRAM_AUTH_TOKEN", default='')
 TELEGRAM_URL = f'https://api.telegram.org/bot{TELEGRAM_AUTH_TOKEN}/'

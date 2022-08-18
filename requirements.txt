@@ -14,6 +14,8 @@ django==4.0.2
     # via
     #   -r requirements.in
     #   django-extensions
+django-environ==0.9.0
+    # via -r requirements.in
 django-extensions==3.1.5
     # via -r requirements.in
 flake8==4.0.1
@@ -29,6 +31,8 @@ pyflakes==2.4.0
 requests==2.27.1
     # via -r requirements.in
 sqlparse==0.4.2
+    # via django
+tzdata==2022.2
     # via django
 urllib3==1.26.8
     # via requests
