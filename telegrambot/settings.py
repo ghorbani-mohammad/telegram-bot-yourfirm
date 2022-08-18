@@ -129,5 +129,5 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-TELEGRAM_AUTH_TOKEN = env("TELEGRAM_AUTH_TOKEN")
+TELEGRAM_AUTH_TOKEN = env('TELEGRAM_AUTH_TOKEN', default='')
 TELEGRAM_URL = f'https://api.telegram.org/bot{TELEGRAM_AUTH_TOKEN}/'
