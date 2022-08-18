@@ -17,6 +17,9 @@ class Subscription(models.Model):
     def __str__(self):
         return f"{self.pk} - {self.term}"
 
+    class Meta:
+        unique_together = ["profile", "term"]
+
 
 class Message(models.Model):
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
