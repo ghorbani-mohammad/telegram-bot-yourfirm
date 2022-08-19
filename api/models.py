@@ -12,6 +12,7 @@ class Profile(models.Model):
 class Subscription(models.Model):
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
     term = models.CharField(max_length=255, blank=True, null=True)
+    last_sent_job = models.PositiveIntegerField(null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
