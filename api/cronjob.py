@@ -4,6 +4,8 @@ from .models import Subscription
 
 
 class Crawler:
+    # We will only check first page ofr results,
+    # Hopefully we run this job enough time in a day to don't lose any job
     def crawl(self):
         subscriptions = Subscription.objects.all()
 
