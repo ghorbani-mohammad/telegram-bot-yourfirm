@@ -7,7 +7,7 @@ from django.conf import settings
 @pytest.mark.django_db
 def test_subscribe(client):
     url = reverse('api:push_data')
-    response = client.post(
+    r = client.post(
         url,
         {
             'message': {
@@ -19,13 +19,13 @@ def test_subscribe(client):
         },
         content_type="application/json",
     )
-    assert response.status_code == 200
+    assert r.status_code == 200
 
 
 @pytest.mark.django_db
 def test_unsubscribe(client):
     url = reverse('api:push_data')
-    response = client.post(
+    r = client.post(
         url,
         {
             'message': {
@@ -37,12 +37,13 @@ def test_unsubscribe(client):
         },
         content_type="application/json",
     )
-    assert response.status_code == 200
+    assert r.status_code == 200
+
 
 @pytest.mark.django_db
 def test_show(client):
     url = reverse('api:push_data')
-    response = client.post(
+    r = client.post(
         url,
         {
             'message': {
@@ -54,4 +55,4 @@ def test_show(client):
         },
         content_type="application/json",
     )
-    assert response.status_code == 200
+    assert r.status_code == 200
