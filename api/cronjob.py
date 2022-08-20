@@ -14,7 +14,7 @@ class Crawler:
             jobs = sorted(jobs, key=lambda x: int(x['id']))
             for job in jobs:
                 job_id = int(job['id'])
-                if job_id > (subscription.last_sent_job or 0):
+                if job_id > subscription.last_sent_job:
                     message = Message(subscription.profile.user_id, job['name'])
                     message.send_response()
                     subscription.last_sent_job = job_id
