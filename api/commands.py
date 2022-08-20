@@ -67,6 +67,9 @@ class Command:
     def list_subscribes(self):
         subscriptions = Subscription.objects.filter(profile=self.profile)\
             .values_list('term', flat=True)
+        if len(subscriptions) == 0:
+            self.create_message(text='You are not subscribed to any term')
+            return
         self.create_message(text='\n'.join(subscriptions))
 
     def unknown(self):
