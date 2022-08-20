@@ -6,7 +6,8 @@ from .models import Subscription
 class Crawler:
     # We will only check first page of the results,
     # Hopefully we run this job enough time in a day to don't lose any job
-    def crawl(self):
+    @classmethod
+    def crawl(cls):
         subscriptions = Subscription.objects.all()
 
         for subscription in subscriptions:
