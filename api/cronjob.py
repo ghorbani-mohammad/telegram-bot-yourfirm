@@ -23,6 +23,8 @@ class Crawler:
                 redis_duplicate_checker.set(
                     subscription.term, json.dumps(cached_jobs), ex=10 * MINUTE
                 )
+            else:
+                cached_jobs = json.loads(cached_jobs)
             jobs = sorted(cached_jobs, key=lambda x: int(x['id']))
             for job in jobs:
                 job_id = int(job['id'])
