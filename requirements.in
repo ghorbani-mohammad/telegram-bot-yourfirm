@@ -1,4 +1,6 @@
 Django
+django-environ
 django-extensions
 flake8
+redis
 requests

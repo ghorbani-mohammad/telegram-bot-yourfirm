@@ -9,12 +9,16 @@ https://docs.djangoproject.com/en/4.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
-
+import os
+import environ
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+# Reading environment variables
+env = environ.Env()
+environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
@@ -125,5 +129,12 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-TELEGRAM_AUTH_TOKEN = ''
+TELEGRAM_AUTH_TOKEN = env('TELEGRAM_AUTH_TOKEN', default='')
 TELEGRAM_URL = f'https://api.telegram.org/bot{TELEGRAM_AUTH_TOKEN}/'
+
+REDIS_DB = env('REDIS_DB', default=0)
+REDIS_PORT = env('REDIS_PORT', default=6379)
+REDIS_HOST = env('REDIS_HOST', default='redis_host')
+
+YOURFIRM_URL = 'https://www.yourfirm.de'
+YOURFIRM_RESPONSE_CACHE_TIME = env('YOURFIRM_RESPONSE_CACHE_TIME', default=10 * 60)
