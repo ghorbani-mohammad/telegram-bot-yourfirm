@@ -2,5 +2,6 @@ Django
 django-environ
 django-extensions
 flake8
+pytest-django
 redis
 requests
