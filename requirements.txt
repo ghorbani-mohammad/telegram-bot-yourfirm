@@ -10,12 +10,16 @@ atomicwrites==1.4.1
     # via pytest
 attrs==22.1.0
     # via pytest
+async-timeout==4.0.2
+    # via redis
 certifi==2021.10.8
     # via requests
 charset-normalizer==2.0.12
     # via requests
 colorama==0.4.5
     # via pytest
+deprecated==1.2.13
+    # via redis
 django==4.0.2
     # via
     #   -r requirements.in
@@ -38,6 +42,8 @@ pluggy==1.0.0
     # via pytest
 py==1.11.0
     # via pytest
+packaging==21.3
+    # via redis
 pycodestyle==2.8.0
     # via flake8
 pyflakes==2.4.0
@@ -47,6 +53,8 @@ pyparsing==3.0.9
 pytest==7.1.2
     # via pytest-django
 pytest-django==4.5.2
+    # via -r requirements.in
+redis==4.3.4
     # via -r requirements.in
 requests==2.27.1
     # via -r requirements.in
@@ -58,3 +66,5 @@ tzdata==2022.2
     # via django
 urllib3==1.26.8
     # via requests
+wrapt==1.14.1
+    # via deprecated
