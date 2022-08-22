@@ -60,12 +60,21 @@ class Command:
     def start(self):
         self.create_message(text='Hello!')
 
+    def empty_term(self):
+        if self.term == '':
+            self.create_message(text='Please specify your interested term like python.')
+            return True
+
     def subscribe(self):
+        if self.empty_term():
+            return
         if not Subscription.objects.filter(profile=self.profile, term=self.term).exists():
             Subscription.objects.create(profile=self.profile, term=self.term)
         self.create_message(text='Subscribed')
 
     def unsubscribe(self):
+        if self.empty_term():
+            return
         Subscription.objects.filter(profile=self.profile, term=self.term).delete()
         self.create_message(text='Unsubscribed')
 
