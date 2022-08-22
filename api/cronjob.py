@@ -6,7 +6,6 @@ from .yourfirm import Yourfirm
 from .models import Subscription
 from django.conf import settings
 
-MINUTE = 60
 redis_duplicate_checker = redis.StrictRedis(
     host=settings.REDIS_HOST, port=settings.REDIS_PORT, db=settings.REDIS_DB
 )
@@ -24,7 +23,9 @@ class Crawler:
             if not cached_jobs:
                 cached_jobs = Yourfirm.search(subscription.term)['result']
                 redis_duplicate_checker.set(
-                    subscription.term, json.dumps(cached_jobs), ex=10 * MINUTE
+                    subscription.term,
+                    json.dumps(cached_jobs),
+                    ex=settings.YOURFIRM_RESPONSE_CACHE_TIME
                 )
             else:
                 cached_jobs = json.loads(cached_jobs)

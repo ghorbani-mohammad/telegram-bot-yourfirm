@@ -137,3 +137,4 @@ REDIS_PORT = env('REDIS_PORT', default=6379)
 REDIS_HOST = env('REDIS_HOST', default='redis_host')
 
 YOURFIRM_URL = 'https://www.yourfirm.de'
+YOURFIRM_RESPONSE_CACHE_TIME = env('YOURFIRM_RESPONSE_CACHE_TIME', default=10 * 60)
