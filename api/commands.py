@@ -21,6 +21,11 @@ class Message:
     def process_data(self, data):
         message = data['message']
         message_term = message['text'].lower().replace('/', '').split()
+        if not len(message_term):
+            # if command was empty
+            cmd = Command(self.profile, None, None)
+            cmd.unknown()
+            return
         command = message_term[0]
         term = ' '.join(message_term[1:])
         cmd = Command(self.profile, command, term)
