@@ -135,3 +135,5 @@ TELEGRAM_URL = f'https://api.telegram.org/bot{TELEGRAM_AUTH_TOKEN}/'
 REDIS_DB = env('REDIS_DB', default=0)
 REDIS_PORT = env('REDIS_PORT', default=6379)
 REDIS_HOST = env('REDIS_HOST', default='redis_host')
+
+YOURFIRM_URL = 'https://www.yourfirm.de'
