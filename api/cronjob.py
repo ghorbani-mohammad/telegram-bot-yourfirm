@@ -1,6 +1,12 @@
+import json
+import redis
+
 from .commands import Message
 from .yourfirm import Yourfirm
 from .models import Subscription
+
+MINUTE = 60
+redis_duplicate_checker = redis.StrictRedis(host="redis_host", port=6379, db=0)
 
 
 class Crawler:
@@ -11,8 +17,13 @@ class Crawler:
         subscriptions = Subscription.objects.all()
 
         for subscription in subscriptions:
-            jobs = Yourfirm.search(subscription.term)['result']
-            jobs = sorted(jobs, key=lambda x: int(x['id']))
+            cached_jobs = redis_duplicate_checker.get(subscription.term)
+            if cached_jobs is None:
+                cached_jobs = Yourfirm.search(subscription.term)['result']
+                redis_duplicate_checker.set(
+                    subscription.term, json.dumps(cached_jobs), ex=10 * MINUTE
+                )
+            jobs = sorted(cached_jobs, key=lambda x: int(x['id']))
             for job in jobs:
                 job_id = int(job['id'])
                 if job_id > subscription.last_sent_job:
