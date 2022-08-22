@@ -4,9 +4,12 @@ import redis
 from .commands import Message
 from .yourfirm import Yourfirm
 from .models import Subscription
+from django.conf import settings
 
 MINUTE = 60
-redis_duplicate_checker = redis.StrictRedis(host="redis_host", port=6379, db=0)
+redis_duplicate_checker = redis.StrictRedis(
+    host=settings.REDIS_HOST, port=settings.REDIS_PORT, db=settings.REDIS_DB
+)
 
 
 class Crawler:
