@@ -3,6 +3,8 @@ import pytest
 from django.urls import reverse
 from django.conf import settings
 
+from api.models import Profile, Subscription
+
 
 @pytest.mark.django_db
 def test_subscribe(client):
@@ -19,7 +21,10 @@ def test_subscribe(client):
         },
         content_type="application/json",
     )
-    assert r.status_code == 200
+    profiles_count = Profile.objects.count()
+    subscriptions_count = Subscription.objects.count()
+    conditions = (profiles_count == 1) and (subscriptions_count == 1)
+    assert r.status_code == 200 and conditions
 
 
 @pytest.mark.django_db
@@ -37,4 +42,7 @@ def test_unsubscribe(client):
         },
         content_type="application/json",
     )
-    assert r.status_code == 200
+    profiles_count = Profile.objects.count()
+    subscriptions_count = Subscription.objects.count()
+    conditions = (profiles_count == 1) and (subscriptions_count == 0)
+    assert r.status_code == 200 and conditions
