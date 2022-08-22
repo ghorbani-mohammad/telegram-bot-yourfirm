@@ -21,7 +21,7 @@ class Crawler:
 
         for subscription in subscriptions:
             cached_jobs = redis_duplicate_checker.get(subscription.term)
-            if cached_jobs is None:
+            if not cached_jobs:
                 cached_jobs = Yourfirm.search(subscription.term)['result']
                 redis_duplicate_checker.set(
                     subscription.term, json.dumps(cached_jobs), ex=10 * MINUTE
