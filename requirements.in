@@ -3,5 +3,6 @@ django-environ
 django-extensions
 flake8
 pytest-django
+pytest-mock
 redis
 requests

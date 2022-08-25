@@ -6,12 +6,12 @@
 #
 asgiref==3.5.0
     # via django
+async-timeout==4.0.2
+    # via redis
 atomicwrites==1.4.1
     # via pytest
 attrs==22.1.0
     # via pytest
-async-timeout==4.0.2
-    # via redis
 certifi==2021.10.8
     # via requests
 charset-normalizer==2.0.12
@@ -37,7 +37,9 @@ iniconfig==1.1.1
 mccabe==0.6.1
     # via flake8
 packaging==21.3
-    # via pytest
+    # via
+    #   pytest
+    #   redis
 pluggy==1.0.0
     # via pytest
 py==1.11.0
@@ -49,8 +51,12 @@ pyflakes==2.4.0
 pyparsing==3.0.9
     # via packaging
 pytest==7.1.2
-    # via pytest-django
+    # via
+    #   pytest-django
+    #   pytest-mock
 pytest-django==4.5.2
+    # via -r requirements.in
+pytest-mock==3.8.2
     # via -r requirements.in
 redis==4.3.4
     # via -r requirements.in
