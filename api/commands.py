@@ -32,6 +32,8 @@ class Message:
 
         if command == 'start':
             cmd.start()
+        elif command == 'ping':
+            cmd.ping()
         elif command == 'subscribe':
             cmd.subscribe()
         elif command == 'unsubscribe':
@@ -71,6 +73,9 @@ class Command:
         if not Subscription.objects.filter(profile=self.profile, term=self.term).exists():
             Subscription.objects.create(profile=self.profile, term=self.term)
         self.create_message(text='Subscribed')
+
+    def ping(self):
+        self.create_message(text='PONG')
 
     def unsubscribe(self):
         if self.empty_term():
