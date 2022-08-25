@@ -16,11 +16,11 @@ def push_data(request):
         data = json.loads(request.body)
     except json.decoder.JSONDecodeError:
         return HttpResponse(status=400)
-    # If request is not SendMessage, we do nothing
-    try:
+
+    # We only consider SendMessage type requests that are text message
+    # EditMessage or file messages will be ignored
+    if ('message' in data) and ('text' in data['message']):
         message = Message(data['message']['chat']['id'], data['message']['text'])
-    except Exception as e:
-        logger.error(f"error: {e}, data: {data}")
-        return HttpResponse(status=204)
-    message.process_data(data)
-    return HttpResponse(status=200)
+        message.process_data(data)
+        return HttpResponse(status=200)
+    return HttpResponse(status=204)
