@@ -2,7 +2,7 @@ import json
 import redis
 
 from .commands import Message
-from .yourfirm import Yourfirm
+from .yourfirm import yourfirm_search
 from .models import Subscription
 from django.conf import settings
 
@@ -21,7 +21,7 @@ class Crawler:
         for subscription in subscriptions:
             cached_jobs = redis_duplicate_checker.get(subscription.term)
             if not cached_jobs:
-                cached_jobs = Yourfirm.search(subscription.term)['result']
+                cached_jobs = yourfirm_search(subscription.term)['result']
                 redis_duplicate_checker.set(
                     subscription.term,
                     json.dumps(cached_jobs),
