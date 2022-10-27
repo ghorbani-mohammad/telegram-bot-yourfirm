@@ -1,0 +1,11 @@
+services:
+  telegram_bot:
+    container_name: telegram_bot
+    build: .
+    volumes:
+      - .:/app
+    ports:
+      - 8000:80
+  redis_host:
+    container_name: redis_host
+    image: redis:7.0.4-alpine
