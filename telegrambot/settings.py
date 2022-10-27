@@ -4,13 +4,10 @@ from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+DEBUG = True
 env = environ.Env()
 environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
-
 SECRET_KEY = 'django-insecure-1nv*-1bq#6=b3j2&$kritu^g)g0_a7zk9h5cy=t-49o-8v&=^w'
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
 
 
 ALLOWED_HOSTS = ['.ngrok.io', 'localhost']
