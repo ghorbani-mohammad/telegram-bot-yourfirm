@@ -14,8 +14,6 @@ ALLOWED_HOSTS = ['.ngrok.io', 'localhost']
 CSRF_TRUSTED_ORIGINS = ['http://*.ngrok.io', 'https://*.ngrok.io']
 
 
-# Application definition
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
