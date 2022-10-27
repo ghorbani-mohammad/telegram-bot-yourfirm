@@ -1,4 +1,5 @@
 import json
+import time
 import redis
 
 from .commands import Message
@@ -29,11 +30,18 @@ class Crawler:
                 )
             else:
                 cached_jobs = json.loads(cached_jobs)
-            jobs = sorted(cached_jobs, key=lambda x: int(x['id']))
+            jobs = sorted(cached_jobs, key=lambda x: x['id'])
             for job in jobs:
-                job_id = int(job['id'])
+                try:
+                    job_id = int(job['id'])
+                except Exception:
+                    continue
                 if job_id > subscription.last_sent_job:
-                    message = Message(subscription.profile.user_id, job['name'])
+                    message_text = (
+                        f"New Job:\n\n*{job['name']}*\n\nhttps://www.yourfirm.de{job['url']}"
+                    )
+                    message = Message(subscription.profile.user_id, message_text)
                     message.send_response()
                     subscription.last_sent_job = job_id
                     subscription.save()
+                    time.sleep(1)
