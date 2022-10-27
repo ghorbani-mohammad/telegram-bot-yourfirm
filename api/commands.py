@@ -11,7 +11,7 @@ logger = logging.getLogger(__name__)
 
 class Message:
     def __init__(self, chat_id, text, **kwargs):
-        self.message = dict(chat_id=chat_id, text=text, **kwargs)
+        self.message = dict(chat_id=chat_id, text=text, parse_mode='Markdown', **kwargs)
         self.profile = self.get_profile(chat_id)
 
     @classmethod
