@@ -13,7 +13,7 @@ class Subscription(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
-        unique_together = ["profile", "term"]
+        unique_together = ("profile", "term")
 
 
 class Message(models.Model):
