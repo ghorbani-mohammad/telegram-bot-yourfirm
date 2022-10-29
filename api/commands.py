@@ -55,9 +55,9 @@ class Message:
 
 class Command:
     def __init__(self, profile, command, term=None):
+        self.term = term
         self.profile = profile
         self.command = command
-        self.term = term
 
     def start(self):
         self.create_message(text='Hello!')
