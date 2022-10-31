@@ -15,4 +15,4 @@ class SubscriptionAdmin(admin.ModelAdmin):
 
 @admin.register(models.Message)
 class MessageAdmin(admin.ModelAdmin):
-    list_display = ("pk", "profile", "text", "sent_at")
+    list_display = ("pk", "profile", "text", "sent_at",)
