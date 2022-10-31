@@ -10,7 +10,7 @@ class ProfileAdmin(admin.ModelAdmin):
 
 @admin.register(models.Subscription)
 class SubscriptionAdmin(admin.ModelAdmin):
-    list_display = ("pk", "profile", "term", "created_at")
+    list_display = ("pk", "profile", "term", "created_at",)
 
 
 @admin.register(models.Message)
